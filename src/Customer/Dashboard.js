@@ -15,7 +15,7 @@ class Dashboard extends Component {
         this.props.saveUser({
           user: this.props.user.user,
         });
-        console.log(this.props.user.user.userId.email)
+        console.log(this.props.user.user.email)
         this.props.saveItem({
           item: this.props.item.item,
         });

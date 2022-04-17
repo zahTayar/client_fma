@@ -91,7 +91,6 @@ class Login extends Component {
           console.error("Error:", error.data);
         });
     };
-
     return (
       <div>
         <NavigationBar />

@@ -135,7 +135,7 @@ export default function Table(user) {
       },
       operationAttributes: {
         capacity: capacity,
-        newTime: newTime,
+        newTime: newTime, 
         oldTime: oldTime,
         tableNum: tableNum
       }

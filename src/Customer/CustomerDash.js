@@ -47,7 +47,11 @@ class Dashboard extends Component {
       };
 
       const dataJson = JSON.stringify(newItem);
+<<<<<<< HEAD
       await fetch("http://localhost:5500/operations", {
+=======
+      await fetch("http://localhost:8041/twins/operations", {
+>>>>>>> main
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

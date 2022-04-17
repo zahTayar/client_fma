@@ -1,6 +1,6 @@
-import "./Hostess/App.css";
+import "./App.css";
 import React from "react";
-import { BrowserRouter,  Route, Routes } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Dashboard from "./Customer/CustomerDash";
 import PersonalInfo from "./Customer/PersonalInfo";
 import Reservations from "./Customer/Reservations";
@@ -13,16 +13,16 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Routes>
-          <Route path="/"  element={<Login/>} />
-          <Route path="/Welcome" element={<Login/>} />
-          <Route path="/Register" element={<Register/>} />
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/dashboard/PersonalInfo" element={<PersonalInfo/>} />
-          <Route path="/dashboard/Reservations" element={<Reservations/>} />
-          <Route path="/tableMap" element={<TableMap/>} />
-          <Route path="/hostess" element ={<Hostess/>} />
-        </Routes>
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/Welcome" component={Login} />
+          <Route path="/Register" component={Register} />
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/dashboard/PersonalInfo" component={PersonalInfo} />
+          <Route path="/dashboard/Reservations" component={Reservations} />
+          <Route path="/tableMap" component={TableMap} />
+          <Route path="/hostess" component={Hostess} />
+        </Switch>
       </div>
     </BrowserRouter>
   );

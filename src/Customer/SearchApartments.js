@@ -21,20 +21,21 @@ class SearchApartments extends Component {
           city: '',
           street: '', 
           show_modal: false,
-          error: ''
+          error: '',
+          item_id: ''
       };
     }
 
     handleChangePrice = (event) => {
-        this.setState({ price: event.target.value });
+        this.setState({ price: Number(event.target.value) });
       };
     
     handleChangeNumOfRooms = (event) => {
-        this.setState({ num_of_rooms: event.target.value });
+        this.setState({ num_of_rooms: Number(event.target.value) });
       };
     
     handleChangeSquareMeter = (event) => {
-        this.setState({ square_meter: event.target.value });
+        this.setState({ square_meter: Number(event.target.value) });
       };
 
     handleChangeCity = (event) => {
@@ -56,7 +57,7 @@ class SearchApartments extends Component {
         }
         
         //save_search
-        //this.save_search()
+        this.save_search()
         
         //open_modal
         this.setState({ show_modal: true });
@@ -76,17 +77,19 @@ class SearchApartments extends Component {
                 price: this.state.price,
                 num_of_rooms: this.state.num_of_rooms,
                 location: {
-                    city: this.state.city,
-                    street: this.state.street
+                    street: this.state.street,
+                    city: this.state.city
                 },
                 square_meter: this.state.square_meter
             },
             created_by: 'lidar602@gmail.com' //this.props.user.email
         });
-        axios
-        .post("items/store", item, {headers:{"Content-Type" : "application/json"}})
+        axios.post("items/store", item, {headers:{"Content-Type" : "application/json"}})
+        .then((response) => {
+            this.setState({item_id: response.data.item_id})
+        })
         .catch((error) => {
-            console.log(error.response.data)
+            console.log(error.response)
         });
     }
 
@@ -106,12 +109,6 @@ class SearchApartments extends Component {
         }
         return ''
     }
-
-    // functions:
-    // handleChooseTable = (tableNum) => {
-    //     console.log(tableNum);
-    //     this.setState({ showModal: true, chosenTable: tableNum });
-    //   };
 
     render() {
         const modal_style = {
@@ -137,18 +134,18 @@ class SearchApartments extends Component {
             <div>
                 <div style={{ display: "flex", alignItems: "center", padding: "100px", margin: 'auto', borderRadius: '50%'}}>
                     <Stack>
-                    <form style={{marginLeft: "100px", backgroundColor: 'black', borderRadius: '50%'}} onSubmit={this.handleSubmitForm}>
-                        {error}
-                        <Modal
+                    <Modal
                         open={this.state.show_modal}
                         onClose={this.handleCloseModal}
                         aria-labelledby="parent-modal-title"
                         aria-describedby="parent-modal-description">
                         <Box sx={{ ...modal_style, width: 400 }}>
                         <h2 id="parent-modal-title">Search Results</h2>
-                        {SearchResults}
+                        <SearchResults item_id={this.state.item_id}></SearchResults>
                         </Box>
-                        </Modal>
+                    </Modal>
+                    <form style={{marginLeft: "100px", backgroundColor: 'black', borderRadius: '50%'}} onSubmit={this.handleSubmitForm}>
+                        {error}
                         <table style={{ justifyContent: "center", width: "800px", height: "150px", backgroundColor: 'white'}}>
                         <tr>
                         <th style={{ padding: "20px", width: "150px",backgroundColor: 'white'}}>
@@ -211,6 +208,7 @@ class SearchApartments extends Component {
             </div>
         )
     }
+
 
     
 }

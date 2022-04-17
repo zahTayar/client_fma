@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Dashboard from "./Customer/CustomerDash";
+import Dashboard from "./Customer/Dashboard";
 import PersonalInfo from "./Customer/PersonalInfo";
 import Reservations from "./Customer/Reservations";
 import Login from "./Sign/Login";

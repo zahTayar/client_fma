@@ -5,19 +5,12 @@ import "./Style.css";
 class Botton extends Component{
     render(){
         return(
-            <div style = {{backgroundColor:"black", height:'100px', marginTop:'116px'}}>
-                <div className="brand-logo" style= {{marginLeft:'300px',fontSize:"40px", color: 'rgba(106, 196, 255)', marginTop:'15px', position:'absolute', zIndex:'1',textDecoration: 'none' }}>
-                    Tableing
-                </div>
-               <Button className="regular" variant="dark" style={{borderColor:'white', backgroundColor:'black', color:'white', fontSize: '17px', borderRadius:'30px', width:'200px', height:'45px', fontWeight:'bolder', marginLeft:'1000px', marginTop:'20px'}}>יש לכם עסק? הצטרפו כאן</Button>{' '}
-
-                </div>
-
+            <div style = {{bottom:'0px', backgroundColor:"black", height:'100px',bottom: '0px', width: '100%'}}>
+                <div className="brand-logo" style= {{marginLeft:'1000px',fontSize:"40px", color: 'rgba(106, 196, 255)', marginTop:'15px', position:'absolute',textDecoration: 'none' }}>
+                Let's Find Apartment For You
+                </div>          
+            </div>
         );
-      
-        
     }
-
-
 }
 export default Botton;

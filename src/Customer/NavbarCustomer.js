@@ -20,7 +20,7 @@ class NavigationBar extends Component{
               <div className="brand-logo" style= {{marginLeft:'120px',fontSize:"35px", color: 'white', marginTop:'5px', position:'absolute', zIndex:2, textDecoration: 'none', fontWeight:'bold'}}>
                 FMA
               </div>
-              <nav>
+              <nav style={{justifyContent: 'center'}}>
               <Link to={"/dashboard"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, marginLeft:'350px', fontSize:"25px", fontWeight:'bold', marginTop:'10px'}}>
                 SEARCH
               </Link>
@@ -33,8 +33,8 @@ class NavigationBar extends Component{
               <div className="regular" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, marginLeft:'1085px', fontSize:"25px", fontWeight:'bold', marginTop:'10px'}}>
                 היי {this.props.user.user.userName}!
               </div>
-              <Sidebar/>
               </nav>
+              <Sidebar/>
             </div>
         );    
         

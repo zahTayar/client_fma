@@ -56,7 +56,7 @@ class SearchApartments extends Component {
         }
         
         //save_search
-        this.save_search()
+        //this.save_search()
         
         //open_modal
         this.setState({ show_modal: true });

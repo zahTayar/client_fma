@@ -135,7 +135,7 @@ export default function Table(user) {
       },
       operationAttributes: {
         capacity: capacity,
-        newTime: newTime, 
+        newTime: newTime,
         oldTime: oldTime,
         tableNum: tableNum
       }
@@ -148,7 +148,6 @@ export default function Table(user) {
       setError(true);
       setErrorMsg(error.response.data.message);
     });
-
   }
   let errorHandle = null
   if (error === true) {

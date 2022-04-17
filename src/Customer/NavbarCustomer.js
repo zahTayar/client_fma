@@ -18,7 +18,7 @@ class NavigationBar extends Component{
            <div style = {{height: '60px', display:'flex',borderColor:'black', position: 'fixed', top:'0px', right:'0px', width: '1460px', backgroundColor:'white', zIndex:3}}>
           
           <Link to={"/dashboard"} className="brand-logo" style= {{marginLeft:'300px',fontSize:"35px", color: 'rgba(106, 196, 255)', marginTop:'10px', position:'absolute', zIndex:2, textDecoration: 'none'}}>
-          Tableing
+          Apartments rent or buy
           </Link>
           <div className="regular" style={{direction:'rtl', color: 'rgba(106, 196, 255)', position:'absolute', zIndex:3, marginLeft:'1085px', fontSize:"25px", fontWeight:'bold', marginTop:'20px'}}>היי {this.props.user.user.userName}!</div>
          <Sidebar/>

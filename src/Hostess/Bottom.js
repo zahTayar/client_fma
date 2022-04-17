@@ -23,7 +23,7 @@ class Botton extends Component {
               zIndex: "1",
               textDecoration: "none",
             }}>
-            Tableing
+            Apartments rent or buy
           </div>
           <Button
             className="regular"

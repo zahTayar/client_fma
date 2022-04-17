@@ -6,7 +6,7 @@ import NavigationBar from "../Basic/navigationBar";
 import LoginForm from "./LoginForm";
 import Bottom from "../Basic/Bottom";
 import Background from "../img/Background.jpeg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Navigate } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -28,14 +28,13 @@ class Login extends Component {
       },
     });
   }
+  
   handleChange(event) {
     this.setState({ email: event.target.email });
   }
 
   render() {
     const handleButtonClick = async (Email) => {
-      // console.log(Email);
-
       this.setState({
         isInProgress: true,
       });
@@ -44,7 +43,7 @@ class Login extends Component {
         "http://localhost:5500/fma/users/login/" + Email
       )
         .then((response) => {
-          
+
           if (response.status === 200) {
             this.setState({ succeded: true });
             response.json().then((d) => {
@@ -58,11 +57,10 @@ class Login extends Component {
                   avatar: d.avatar,
                 },
               });
-              console.log(user)
-              const navigate =useNavigate();
+
               if (this.props.user.user.role === "MANAGER") {
-                console.log()
-                navigate.apply("/tableMap");
+                console.log("here")
+                window.location.assign("/dashboard")
               }
               if (this.props.user.user.email === "") {
                 this.props.history.push("/hostess");
@@ -93,7 +91,6 @@ class Login extends Component {
           console.error("Error:", error.data);
         });
     };
-    // console.log(this.props.user.user);
 
     return (
       <div>

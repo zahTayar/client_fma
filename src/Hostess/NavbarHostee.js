@@ -29,7 +29,7 @@ class NavigationBar extends Component {
             zIndex: "99",
             textDecoration: "none",
           }}>
-          Tableing
+          Apartments rent or buy
         </Link>
         <Sidebar />
       </div>

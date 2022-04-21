@@ -10,6 +10,7 @@ import axios from "../axios";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import SearchResults from './SearchResults';
+import CircularProgress from '@mui/material/CircularProgress';
 
 class SearchApartments extends Component {
     constructor() {
@@ -22,7 +23,10 @@ class SearchApartments extends Component {
           street: '', 
           show_modal: false,
           error: '',
-          item_id: ''
+          apartments: null,
+          apartments_data: null,
+          error_search: false,
+          msg_error_search: 'Sorry, we do not find apartments for you yet....'
       };
     }
 
@@ -64,7 +68,7 @@ class SearchApartments extends Component {
     }
 
     handleCloseModal = () => {
-        this.setState({ show_modal: false });
+        this.setState({ show_modal: false, apartments: null, error_search: false });
     }
 
     save_search = () => {
@@ -86,10 +90,54 @@ class SearchApartments extends Component {
         });
         axios.post("items/store", item, {headers:{"Content-Type" : "application/json"}})
         .then((response) => {
-            this.setState({item_id: response.data.item_id})
+            this.postOperation(response.data.item_id);
+            this.postOperationData(response.data.item_id);
         })
         .catch((error) => {
             console.log(error.response)
+        });
+    }
+
+    postOperation = (item_id) => {
+        const operation = JSON.stringify({
+            _id: 'operation_id',
+            type: "search",
+            invoked_by: 'lidar602@gmail.com', //this.props.user.email
+            created_timestamp: '',
+            operation_attributes: {
+                item_id: item_id
+            }
+        });
+        axios.post("operations", operation, {headers:{"Content-Type" : "application/json"}})
+        .then((response) => {
+            this.setState({apartments: response.data}) 
+            if (Object.keys(response.data).length == 0) {
+                this.setState({error_search: true})
+            }   
+        })
+        .catch((error) => {
+            this.setState({error_search: true})
+            console.log(error.response.data)
+        });
+    }
+
+    postOperationData = (item_id) => {
+        const operation = JSON.stringify({
+            _id: 'operation_id',
+            type: "search_apartments_data",
+            invoked_by: 'lidar602@gmail.com', //this.props.user.email
+            created_timestamp: '',
+            operation_attributes: {
+                item_id: item_id
+            }
+        });
+        axios.post("operations", operation, {headers:{"Content-Type" : "application/json"}})
+        .then((response) => {
+            console.log(response.data)
+            this.setState({apartments_data: response.data})      
+        })
+        .catch((error) => {
+            console.log(error.response.data)
         });
     }
 
@@ -130,6 +178,13 @@ class SearchApartments extends Component {
             <Alert severity="error">{this.state.error}.</Alert>
             );
         }
+        let search_results = <CircularProgress />;
+        if (this.state.apartments && (Object.keys(this.state.apartments).length > 0) && this.state.apartments_data) {
+            search_results = <SearchResults data={this.state.apartments} apartments_data={this.state.apartments_data}></SearchResults>
+        }
+        else if(this.state.error_search){
+            search_results = <Alert severity="info">{this.state.msg_error_search}.</Alert>
+        }
         return (
             <div>
                 <div style={{ display: "flex", alignItems: "center", padding: "100px", margin: 'auto', borderRadius: '50%'}}>
@@ -139,9 +194,8 @@ class SearchApartments extends Component {
                         onClose={this.handleCloseModal}
                         aria-labelledby="parent-modal-title"
                         aria-describedby="parent-modal-description">
-                        <Box sx={{ ...modal_style, width: 400 }}>
-                        <h2 id="parent-modal-title">Search Results</h2>
-                        <SearchResults item_id={this.state.item_id}></SearchResults>
+                        <Box sx={{ ...modal_style, width: 800, maxHeight: 700, overflowY: 'auto' }}>
+                        {search_results}
                         </Box>
                     </Modal>
                     <form style={{marginLeft: "100px", backgroundColor: 'black', borderRadius: '50%'}} onSubmit={this.handleSubmitForm}>

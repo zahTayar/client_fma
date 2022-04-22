@@ -20,7 +20,7 @@ export default function SideBar() {
       <IconContext.Provider value={{ color: 'rgba(106, 196, 255)'}}>
         <div >
           <Link to='#' className='menu-bars' >
-            <FiIcons.FiMenu onClick={showSidebar} style={{ marginTop: '15px', marginLeft:'1360px'}}/>
+            <FiIcons.FiMenu onClick={showSidebar} style={{ marginTop: '15px', float: 'right'}}/>
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

@@ -8,20 +8,44 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import BackgroundImage from '../img/BackgroungImage.jpg'
 import ListItemButton from '@mui/material/ListItemButton';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Apartment from './Apartment';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
 class SearchResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            show_modal: false,
+            current_apartment: null
         }
       }
 
       handleToggle = (value) => {
         console.log(value);
+        this.setState({show_modal: true, current_apartment: value});
       };
 
+      handleCloseModal = () => {
+          this.setState({show_modal: false});
+      }
+
     render() {
+        const modal_style = {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: 'background.paper',
+            border: '2px solid #000',
+            boxShadow: 24,
+            pt: 2,
+            px: 4,
+            pb: 3,
+          };
         let apartments = []
         for(let i in Object.values(this.props.data)) {
             let tmp_apartment = this.props.data[i];
@@ -53,8 +77,22 @@ class SearchResults extends Component {
                       </React.Fragment>} />
               </ListItem></ListItemButton><Divider variant="inset" component="li" /></>
            )
+        let apartment_view = <CircularProgress />;
+        if (this.state.current_apartment) {
+            apartment_view = <Apartment data={this.state.current_apartment}></Apartment>
+        }
         return (
             <div>
+                <Modal
+                    open={this.state.show_modal}
+                    onClose={this.handleCloseModal}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description">
+                    <Box sx={{ ...modal_style, width: 800, maxHeight: 700, overflowY: 'auto' }}>
+                    <Button onClick = {this.handleCloseModal}>X</Button>
+                    {apartment_view}
+                    </Box>
+                </Modal>
                 <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper', overflowY: 'auto' }}>
                 <h3 id="parent-modal-title">Last Deals</h3>
                 {apartments_data && apartments_data.map(tmp_apartment_data => 

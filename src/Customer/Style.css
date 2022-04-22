@@ -28,7 +28,7 @@
 
 .nav-menu {
     background-color: white;
-    width: 270px;
+    width: 200px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -41,7 +41,8 @@
 
 .nav-menu.active {
     right: 0;
-    transition: 350ms;
+    transition: 300ms;
+    width: 240px;
 }
 
 .nav-text {

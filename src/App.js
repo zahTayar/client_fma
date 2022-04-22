@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Dashboard from "./Customer/Dashboard";
 import PersonalInfo from "./Customer/PersonalInfo";
-import Reservations from "./Customer/Reservations";
+import Notifications from "./Customer/Notifications";
 import Login from "./Sign/Login";
 import Register from "./Sign/Register";
 import TableMap from "./Manager/TableMap";
@@ -17,9 +17,9 @@ function App() {
           <Route path="/" exact component={Login} />
           <Route path="/Welcome" component={Login} />
           <Route path="/Register" component={Register} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/search" exact component={Dashboard} />
           <Route path="/dashboard/PersonalInfo" component={PersonalInfo} />
-          <Route path="/dashboard/Reservations" component={Reservations} />
+          <Route path="/notifications" component={Notifications} />
           <Route path="/tableMap" component={TableMap} />
           <Route path="/hostess" component={Hostess} />
         </Switch>

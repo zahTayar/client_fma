@@ -36,8 +36,8 @@ class NavigationBar extends Component{
                       <Link to={"/search"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '500px'}}>
                           CALCULATE
                       </Link>
-                      <Link to={"/notifications"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '680px'}}>
-                          NOTIFICATION
+                      <Link to={"/history"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '680px'}}>
+                          HISTORY
                       </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, direction: 'rtl', marginLeft: '680px', marginTop:'10px' }}>
                       היי {this.props.user.user.userName}!

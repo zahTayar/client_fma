@@ -6,7 +6,6 @@ import NavigationBar from "../Basic/navigationBar";
 import LoginForm from "./LoginForm";
 import Bottom from "../Basic/Bottom";
 import Background from "../img/Background.jpeg";
-import { useNavigate,Navigate } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -25,6 +24,7 @@ class Login extends Component {
         role: this.props.user.user.role,
         userName: this.props.user.user.userName,
         avatar: this.props.user.user.avatar,
+        password: this.props.user.user.password
       },
     });
   }
@@ -32,18 +32,19 @@ class Login extends Component {
   handleChange(event) {
     this.setState({ email: event.target.email });
   }
+  handleChangePassword(event){
+    this.setState({password: event.target.password})
+  }
 
   render() {
-    const handleButtonClick = async (Email) => {
+    const handleButtonClick = async (Email,Password) => {
       this.setState({
         isInProgress: true,
       });
-
       await fetch(
         "http://localhost:5500/fma/users/login/" + Email
       )
         .then((response) => {
-
           if (response.status === 200) {
             this.setState({ succeded: true });
             response.json().then((d) => {
@@ -55,21 +56,22 @@ class Login extends Component {
                   role: d.role,
                   userName: d.userName,
                   avatar: d.avatar,
-                },
+                  password: d.password                },
               });
-
+              console.log(this.props.user.user.password);
+              console.log(Password)
+            if(this.props.user.user.password === Password){
               if (this.props.user.user.role === "MANAGER") {
-                console.log("here")
                 window.location.assign("/dashboard")
               }
-              if (this.props.user.user.email === "") {
-                this.props.history.push("/hostess");
-              }
               if (this.props.user.user.role === "PLAYER") {
-                this.props.history.push("/dashboard");
+                window.location.assign("/dashboard");
               }
-
               this.setState({ isLoggedIn: true, error: "" });
+            }else{
+              this.setState({isLoggedIn: false, error: "please insert the correct password"})
+            }
+
             });
           } else {
             if (Email === "" ) {

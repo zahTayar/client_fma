@@ -18,8 +18,11 @@ export default function SignUpForm({ onButtonClick, error}) {
   const classes = useStyles();
   const [Name, setName] = React.useState("");
   const [Email, setEmail] = React.useState("");
+  const [Password, setPassword] = React.useState("");
   const [isNameValid, setNameValid] = React.useState(false);
   const [isEmailValid, setEmailValid] = React.useState(false);
+  const [isPasswordValid, setPasswordValid] = React.useState(false);
+
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -28,7 +31,11 @@ export default function SignUpForm({ onButtonClick, error}) {
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
-  const handleButtonClick = () => onButtonClick(Name, Email);
+  
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  }; 
+  const handleButtonClick = () => onButtonClick(Name, Email,Password);
   useEffect(() => {
     if (Name !== "") {
       setNameValid(true);
@@ -41,7 +48,12 @@ export default function SignUpForm({ onButtonClick, error}) {
     } else {
       setEmailValid(false);
     }
-
+    
+    if (Password !== "") {
+      setPasswordValid(true);
+    } else {
+      setPasswordValid(false);
+    }
   });
   return (
     <form
@@ -72,7 +84,16 @@ export default function SignUpForm({ onButtonClick, error}) {
             variant="outlined"
           />
         </div>
-        
+        <div>
+          <TextField
+            id="outlined-name"
+            label="סיסמא"
+            value={Password}
+            onChange={handlePassword}
+            variant="outlined"
+            style={{direction:'rtl'}}
+          />
+        </div>
         <div>
         <div className="regular" style={{fontSize:'15px', width:'180px', marginLeft:'110px', direction:'rtl', fontWeight:'bold'}}>
             משתמש קיים?

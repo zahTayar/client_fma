@@ -21,19 +21,13 @@ class Register extends Component{
  
     
     render(){
-      const handleButtonClick = async (Name,Email) => {
-        console.log(Email);
-        console.log(Name);
-        
-       
-    
+      const handleButtonClick = async (Name,Email,Password) => {
         const newUser = {
           email:Email,
-          space:"2021b.lidar.ben.david",
           role:"Player",
           username: Name,
-          avatar:""
-          
+          avatar:"",
+          password:Password
         };
      
         const dataJson = JSON.stringify(newUser);
@@ -41,6 +35,7 @@ class Register extends Component{
           method: "POST", // or 'PUT'
           headers: {
             "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*',
             credentials: "include",
           },
           body: dataJson,
@@ -51,15 +46,15 @@ class Register extends Component{
               this.setState({error:""})
               response.json().then((d) => {
                 console.log("200ok");
-                console.log(d);
+                // console.log(d);
                 this.setState({
                   isSignup: true,
                   
                 });
-                this.props.history.push('/Welcome');
+                window.location.assign('/Welcome');
               });
             } else {
-              if(Name === "" && Email === ""){
+              if(Name === "" && Email === "" && Password === ""){
               this.setState({ isSignup: false, error: "נא הכנס נתונים לשדות המתאימים" });
               }else{
               response.json().then((x) => {

@@ -3,10 +3,7 @@ import { SAVE_USER } from "../Constant/ActionTypes";
 const iniState ={
   isLoggedIn: true,
   user:{
-    userId:{
-      space:"",
-      email:""
-    },
+    password:"",
     role:"",
     userName:"",
     avatar:""

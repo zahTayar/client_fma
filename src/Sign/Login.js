@@ -62,10 +62,10 @@ class Login extends Component {
               console.log(Password)
             if(this.props.user.user.password === Password){
               if (this.props.user.user.role === "MANAGER") {
-                window.location.assign("/dashboard")
+                window.location.assign("/search")
               }
               if (this.props.user.user.role === "PLAYER") {
-                window.location.assign("/dashboard");
+                window.location.assign("/search");
               }
               this.setState({ isLoggedIn: true, error: "" });
             }else{

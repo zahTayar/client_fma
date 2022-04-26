@@ -19,7 +19,6 @@ class Dashboard extends Component {
         this.props.saveItem({
           item: this.props.item.item,
         });
-        console.log(this.props.item.item);
         console.log(this.props.user.user);
       }
       handleChange(event) {
@@ -32,7 +31,7 @@ class Dashboard extends Component {
             <div style={{margin: '0', padding: '0', position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
                 <Navbar/>
                 <div style={{ justifyContent: 'center'}}>
-                    <SearchApartments user={this.props.user} />
+                    <SearchApartments user={this.props.user.user} />
                 </div>
                 <div style={{marginTop: '170px'}}>
                     <Bottom/>

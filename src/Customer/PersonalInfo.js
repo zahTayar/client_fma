@@ -4,6 +4,7 @@ import Navbar from "./NavbarCustomer"
 import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
 import Bottom from "../Basic/Bottom"
+import BackgroundImage from '../img/BackgroungImage.jpg';
 
 class PersonalInfo extends Component{
     constructor(props) {
@@ -12,24 +13,21 @@ class PersonalInfo extends Component{
         this.props.saveUser({
           user: this.props.user.user,
         });
-        console.log(this.props.user.user)
-        console.log(this.props.user.user.userId.email)
 
     }
     render(){
         return(
-           
-           <div>
-         <Navbar/>
-         <div style={{backgroundColor:'aliceblue', borderRadius:'30px', width:'400px', height:'330px',textAlign: "center", marginTop: "70px" ,marginLeft:'500px',}}>
-         <h1 className="regular" style={{color: 'black', marginTop:'100px', fontWeight:'bolder'}}>הפרטים שלי</h1>
-         <h4 className="regular" style={{direction:'rtl',textAlign:'center'}}>שם:&nbsp;{this.props.user.user.userName}</h4>
-          <h4 className="regular" style={{direction:'rtl', textAlign:'center'}}>דואר אלקטרוני:&nbsp;{this.props.user.user.userId.email}</h4>
+          <div style={{position: 'fixed', width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
+          <Navbar/>
+          <div style={{backgroundColor:'aliceblue', borderRadius:'30px', width:'400px', height:'330px',textAlign: "center", marginTop: "70px" ,marginLeft:'500px'}}>
+            <h1 style={{color: 'black', marginTop:'100px', fontWeight:'bolder'}}>הפרטים שלי</h1>
+            <br></br><br></br>
+            <h3 style={{direction:'rtl',textAlign:'center'}}>שם:&nbsp;{this.props.user.user.avatar}</h3>
+            <br></br>
+            <h3 style={{direction:'rtl', textAlign:'center'}}>דואר אלקטרוני:&nbsp;{this.props.user.user.email}</h3>
           </div>
-         <div style={{marginTop:"450px"}}>
           <Bottom />
-          </div>
-           </div>
+        </div>
 
         );
                

@@ -13,8 +13,8 @@ import SearchResults from './SearchResults';
 import CircularProgress from '@mui/material/CircularProgress';
 
 class SearchApartments extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
           price: 0,
           square_meter: 0,
@@ -28,6 +28,7 @@ class SearchApartments extends Component {
           error_search: false,
           msg_error_search: 'Sorry, we do not find apartments for you yet....'
       };
+      console.log("user:" + this.props.user.email)
     }
 
     handleChangePrice = (event) => {
@@ -86,7 +87,7 @@ class SearchApartments extends Component {
                 },
                 square_meter: this.state.square_meter
             },
-            created_by: 'lidar602@gmail.com' //this.props.user.email
+            created_by: this.props.user.email //this.props.user.email
         });
         axios.post("items/store", item, {headers:{"Content-Type" : "application/json"}})
         .then((response) => {
@@ -102,7 +103,7 @@ class SearchApartments extends Component {
         const operation = JSON.stringify({
             _id: 'operation_id',
             type: "search",
-            invoked_by: 'lidar602@gmail.com', //this.props.user.email
+            invoked_by: this.props.user.email, //this.props.user.email
             created_timestamp: '',
             operation_attributes: {
                 item_id: item_id
@@ -125,7 +126,7 @@ class SearchApartments extends Component {
         const operation = JSON.stringify({
             _id: 'operation_id',
             type: "search_apartments_data",
-            invoked_by: 'lidar602@gmail.com', //this.props.user.email
+            invoked_by: this.props.user.email, //this.props.user.email
             created_timestamp: '',
             operation_attributes: {
                 item_id: item_id

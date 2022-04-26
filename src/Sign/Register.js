@@ -24,7 +24,7 @@ class Register extends Component{
       const handleButtonClick = async (Name,Email,Password) => {
         const newUser = {
           email:Email,
-          role:"Player",
+          role:"PLAYER",
           username: Name,
           avatar:"",
           password:Password
@@ -53,23 +53,20 @@ class Register extends Component{
                 });
                 window.location.assign('/Welcome');
               });
-            } else {
-              if(Name === "" && Email === "" && Password === ""){
+            } else if(Name === "" || Email === "" || Password === ""){
               this.setState({ isSignup: false, error: "נא הכנס נתונים לשדות המתאימים" });
               }else{
+                this.setState({isSignup: false, error: "ההרשמה נכשלה! המשתמש קיים"});
               response.json().then((x) => {
-                this.setState({
-                  isSignup: false,
-                  error:"ההרשמה נכשלה! המשתמש קיים",
                 
-                });
               });
               }
              
-           } },
+           } ,
           (error) => {
             console.log(error);
             console.log("in error");
+            console.log(this.state.error);
           }
         );
       };
@@ -84,10 +81,8 @@ class Register extends Component{
             <br></br>
             <RegisterForm onButtonClick={handleButtonClick} error = {this.state.error}></RegisterForm>
             </div>
-      
       <Bottom/>
       </div>
-
        </div>
         )
     }

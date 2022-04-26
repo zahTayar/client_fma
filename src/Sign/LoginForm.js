@@ -57,7 +57,6 @@ export default function SignInForm({ onButtonClick, error }) {
           <TextField
             id="outlined-name"
             label="סיסמא"
-            value={Password}
             type="password"
             onChange={handleChangePassword}
             variant="outlined"

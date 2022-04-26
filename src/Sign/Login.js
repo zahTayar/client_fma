@@ -51,15 +51,15 @@ class Login extends Component {
               const user = d;
               this.props.saveUser({
                 isLoggedIn: true,
+                
                 user: {
                   email: Email,
                   role: d.role,
-                  userName: d.userName,
+                  userName: d.username,
                   avatar: d.avatar,
                   password: d.password                },
               });
-              console.log(this.props.user.user.password);
-              console.log(Password)
+              
             if(this.props.user.user.password === Password){
               if (this.props.user.user.role === "MANAGER") {
                 window.location.assign("/search")

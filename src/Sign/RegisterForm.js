@@ -23,7 +23,7 @@ export default function SignUpForm({ onButtonClick, error}) {
   const [isEmailValid, setEmailValid] = React.useState(false);
   const [isPasswordValid, setPasswordValid] = React.useState(false);
 
-
+ 
   const handleName = (event) => {
     setName(event.target.value);
   }; 
@@ -35,6 +35,7 @@ export default function SignUpForm({ onButtonClick, error}) {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   }; 
+
   const handleButtonClick = () => onButtonClick(Name, Email,Password);
   useEffect(() => {
     if (Name !== "") {
@@ -102,7 +103,7 @@ export default function SignUpForm({ onButtonClick, error}) {
           </Link>
           </div>
         <Button className="regular"  style={{position:'relative',zIndex:2,display:'inline',borderColor:'white', backgroundColor:'rgba(106, 196, 255)', color:'white', fontSize: '17px', borderRadius:'30px', width:'100px', height:'45px', fontWeight:'bolder', marginTop:'10px'}} onClick={handleButtonClick}>הרשמה
-        <div className="regular" style={{color:'red', fontSize:'10px', marginTop:'20px', width:'115px', marginRight:'30px'}}>{error}</div>
+        <div className="regular" style={{color:'black', fontSize:'15px', marginTop:'40px', width:'115px', marginRight:'30px'}}>{error}</div>
         </Button>
 
         </div>

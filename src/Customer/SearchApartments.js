@@ -28,7 +28,6 @@ class SearchApartments extends Component {
           error_search: false,
           msg_error_search: 'Sorry, we do not find apartments for you yet....'
       };
-      console.log("user:" + this.props.user.email)
     }
 
     handleChangePrice = (event) => {
@@ -134,7 +133,6 @@ class SearchApartments extends Component {
         });
         axios.post("operations", operation, {headers:{"Content-Type" : "application/json"}})
         .then((response) => {
-            console.log(response.data)
             this.setState({apartments_data: response.data})      
         })
         .catch((error) => {
@@ -188,7 +186,7 @@ class SearchApartments extends Component {
         }
         return (
             <div>
-                <div style={{ display: "flex", alignItems: "center", padding: "100px", margin: 'auto', borderRadius: '50%'}}>
+                <div style={{ display: "flex", alignItems: "center", padding: "100px", margin: 'auto', borderRadius: '50%', position:'fixed'}}>
                     <Stack>
                     <Modal
                         open={this.state.show_modal}
@@ -199,11 +197,11 @@ class SearchApartments extends Component {
                         {search_results}
                         </Box>
                     </Modal>
-                    <form style={{marginLeft: "100px", backgroundColor: 'black', borderRadius: '50%'}} onSubmit={this.handleSubmitForm}>
+                    <form style={{marginLeft: "100px", borderRadius: '50%'}} onSubmit={this.handleSubmitForm}>
                         {error}
                         <table style={{ justifyContent: "center", width: "800px", height: "150px", backgroundColor: 'white'}}>
                         <tr>
-                        <th style={{ padding: "20px", width: "150px",backgroundColor: 'white'}}>
+                        <th style={{ padding: "20px", width: "150px"}}>
                         <FormControl required fullWidth sx={{ m: 1 }} variant="filled" style={{backgroundColor: 'white'}}>
                             <InputLabel htmlFor="filled-adornment-amount">Price</InputLabel>
                             <FilledInput

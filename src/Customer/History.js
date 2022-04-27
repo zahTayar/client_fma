@@ -19,8 +19,11 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { saveItem } from "../Action/SaveItem";
+import { saveUser } from "../Action/SaveUser";
+import { connect } from "react-redux";
 
-class Notifications extends Component{
+class History extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -34,6 +37,13 @@ class Notifications extends Component{
           open: false, 
           item_id: null
         }
+        this.props.saveUser({
+          user: this.props.user.user,
+        });
+        this.props.saveItem({
+          item: this.props.item.item,
+        });
+        console.log(this.props.user.user.email)
     }
     componentDidMount = () => {
       this.last_searches()
@@ -81,7 +91,7 @@ class Notifications extends Component{
     }
 
     last_searches = () => {
-      axios.get("items/by_user/"+"lidar602@gmail.com")
+      axios.get("items/by_user/" + this.props.user.user.email)
       .then((response) => {
         this.setState({searches: response.data})
         if (Object.keys(response.data).length == 0) {
@@ -97,7 +107,7 @@ class Notifications extends Component{
       const operation = JSON.stringify({
           _id: 'operation_id',
           type: "search",
-          invoked_by: 'lidar602@gmail.com', //this.props.user.email
+          invoked_by: this.props.user.user.email, //this.props.user.email
           created_timestamp: '',
           operation_attributes: {
               item_id: item_id
@@ -124,7 +134,7 @@ class Notifications extends Component{
       const operation = JSON.stringify({
           _id: 'operation_id',
           type: "search_apartments_data",
-          invoked_by: 'lidar602@gmail.com', //this.props.user.email
+          invoked_by: this.props.user.user.email, //this.props.user.email
           created_timestamp: '',
           operation_attributes: {
               item_id: item_id
@@ -213,7 +223,7 @@ class Notifications extends Component{
         }
 
         return(
-            <div style={{position: 'fixed', width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
+            <div style={{alignItems: "center",margin: '0', padding: '0', position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
                 <Navbar/>
                 <Modal
                   open={this.state.open}
@@ -240,7 +250,7 @@ class Notifications extends Component{
                         {search_results}
                         </Box>
                 </Modal>
-                <TableContainer component={Paper} style={{width: '1000px', marginLeft: '280px', marginTop: '70px', position: 'fixed', maxHeight: '500px'}}>
+                <TableContainer component={Paper} style={{marginLeft:'350px', width: 'auto', display: 'block', marginTop: '70px', position: 'fixed', maxHeight: '500px'}}>
                   <Table sx={{ minWidth: 650 }}>
                     <TableHead>
                       <TableRow>
@@ -264,5 +274,19 @@ class Notifications extends Component{
         );                      
     }
 }
+const mapStateToProps = (state) => {
+  return {
+    item: state.item,
+    user: state.user
+  };
+};
+function mapDispatchToProps(dispatch) {
+  return {
+    saveItem: (item) => dispatch(saveItem(item)),
+    saveUser: (user) => dispatch(saveUser(user)),
+  };
+}
 
-export default Notifications;
+const His = connect(mapStateToProps, mapDispatchToProps)(History);
+
+export default connect()(His);

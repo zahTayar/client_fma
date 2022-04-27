@@ -40,7 +40,7 @@ class NavigationBar extends Component{
                           HISTORY
                       </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, direction: 'rtl', marginLeft: '680px', marginTop:'10px' }}>
-                      היי {this.props.user.user.avatar}!
+                      היי {this.props.user.user.userName} !
                     </Typography>
                     <Sidebar/>
                   </Toolbar>

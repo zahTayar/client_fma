@@ -22,7 +22,7 @@ class PersonalInfo extends Component{
           <div style={{backgroundColor:'aliceblue', borderRadius:'30px', width:'400px', height:'330px',textAlign: "center", marginTop: "70px" ,marginLeft:'500px'}}>
             <h1 style={{color: 'black', marginTop:'100px', fontWeight:'bolder'}}>הפרטים שלי</h1>
             <br></br><br></br>
-            <h3 style={{direction:'rtl',textAlign:'center'}}>שם:&nbsp;{this.props.user.user.avatar}</h3>
+            <h3 style={{direction:'rtl',textAlign:'center'}}>שם:&nbsp;{this.props.user.user.userName}</h3>
             <br></br>
             <h3 style={{direction:'rtl', textAlign:'center'}}>דואר אלקטרוני:&nbsp;{this.props.user.user.email}</h3>
           </div>

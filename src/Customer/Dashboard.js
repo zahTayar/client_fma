@@ -15,11 +15,9 @@ class Dashboard extends Component {
         this.props.saveUser({
           user: this.props.user.user,
         });
-        console.log(this.props.user.user.email)
         this.props.saveItem({
           item: this.props.item.item,
         });
-        console.log(this.props.user.user);
       }
       handleChange(event) {
         this.setState({ date: event.target.date });

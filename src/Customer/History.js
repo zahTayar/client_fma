@@ -223,8 +223,7 @@ class History extends Component{
         }
 
         return(
-            <div style={{alignItems: "center",margin: '0', padding: '0', position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
-                <Navbar/>
+            <div style={{display: "block", padding: "100px", borderRadius: '50%'}}>
                 <Modal
                   open={this.state.open}
                   onClose={this.handleClose}
@@ -250,7 +249,7 @@ class History extends Component{
                         {search_results}
                         </Box>
                 </Modal>
-                <TableContainer component={Paper} style={{marginLeft:'350px', width: 'auto', display: 'block', marginTop: '70px', position: 'fixed', maxHeight: '500px'}}>
+                <TableContainer component={Paper} style={{ marginLeft: "200px", width: 'auto', position: 'fixed', maxHeight: '500px'}}>
                   <Table sx={{ minWidth: 650 }}>
                     <TableHead>
                       <TableRow>
@@ -269,7 +268,6 @@ class History extends Component{
                     </TableBody>
                   </Table>
                 </TableContainer>
-                <Bottom/>
             </div>
         );                      
     }

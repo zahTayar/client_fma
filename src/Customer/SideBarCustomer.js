@@ -13,10 +13,17 @@ export default function SideBar() {
 
   const showSidebar = () => setSidebar(!sidebar);
 
+  const refresh = (title) => {
+    if (title == 'התנתקות') {
+      window.location.reload(false);
+      window.location.assign("/")
+    }
+  }
+
   return (
     <div>
 
-    <div style={{zIndex:4}}>
+    <div style={{zIndex:-1}}>
       <IconContext.Provider value={{ color: 'rgba(106, 196, 255)'}}>
         <div >
           <Link to='#' className='menu-bars' >
@@ -34,7 +41,7 @@ export default function SideBar() {
             {SideBarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName} style={{direction:'rtl'}}>
-                  <Link to={item.path}>
+                  <Link to={item.path} onClick={() => {refresh(item.title)}}>
                     {item.icon}
                     <span>{item.title}</span>
                   </Link>

@@ -11,6 +11,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import SearchResults from './SearchResults';
 import CircularProgress from '@mui/material/CircularProgress';
+import { saveItem } from "../Action/SaveItem";
+import { saveUser } from "../Action/SaveUser";
+import { connect } from "react-redux";
 
 class SearchApartments extends Component {
     constructor(props) {
@@ -28,6 +31,13 @@ class SearchApartments extends Component {
           error_search: false,
           msg_error_search: 'Sorry, we do not find apartments for you yet....'
       };
+      this.props.saveUser({
+        user: this.props.user.user,
+      });
+      this.props.saveItem({
+        item: this.props.item.item,
+      });
+      console.log(this.props.user.user.email)
     }
 
     handleChangePrice = (event) => {
@@ -86,7 +96,7 @@ class SearchApartments extends Component {
                 },
                 square_meter: this.state.square_meter
             },
-            created_by: this.props.user.email //this.props.user.email
+            created_by: this.props.user.user.email //this.props.user.email
         });
         axios.post("items/store", item, {headers:{"Content-Type" : "application/json"}})
         .then((response) => {
@@ -102,7 +112,7 @@ class SearchApartments extends Component {
         const operation = JSON.stringify({
             _id: 'operation_id',
             type: "search",
-            invoked_by: this.props.user.email, //this.props.user.email
+            invoked_by: this.props.user.user.email, //this.props.user.email
             created_timestamp: '',
             operation_attributes: {
                 item_id: item_id
@@ -125,7 +135,7 @@ class SearchApartments extends Component {
         const operation = JSON.stringify({
             _id: 'operation_id',
             type: "search_apartments_data",
-            invoked_by: this.props.user.email, //this.props.user.email
+            invoked_by: this.props.user.user.email, //this.props.user.email
             created_timestamp: '',
             operation_attributes: {
                 item_id: item_id
@@ -260,9 +270,19 @@ class SearchApartments extends Component {
                 </div>
             </div>
         )
-    }
-
-
-    
+    }    
 }
-export default SearchApartments;
+const mapStateToProps = (state) => {
+    return {
+      item: state.item,
+      user: state.user
+    };
+  };
+  function mapDispatchToProps(dispatch) {
+    return {
+      saveItem: (item) => dispatch(saveItem(item)),
+      saveUser: (user) => dispatch(saveUser(user)),
+    };
+  }
+const Sear = connect(mapStateToProps, mapDispatchToProps)(SearchApartments);
+export default Sear;

@@ -11,6 +11,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
 class NavigationBar extends Component{
     constructor(props) {
@@ -30,7 +32,7 @@ class NavigationBar extends Component{
                     <div className="brand-logo" style= {{marginLeft:'120px',fontSize:"35px", color: 'white', marginTop:'5px', position:'absolute', zIndex:2, textDecoration: 'none', fontWeight:'bold'}}>
                         FMA
                     </div>
-                      <Link to={"/search"} className="menu-bars" style={{textAlign: 'center', direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '350px'}}>
+                      <Link to={"/search"} style={{textAlign: 'center', direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '350px'}}>
                           SEARCH
                       </Link>
                       <Link to={"/search"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '500px'}}>
@@ -62,9 +64,9 @@ const mapStateToProps = (state) => {
       saveUser: (user) => dispatch(saveUser(user)),
     };
   }
-  const Nav = connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+  const Navi = connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
   
-  export default connect()(Nav);
+  export default connect()(Navi);
 
 
 

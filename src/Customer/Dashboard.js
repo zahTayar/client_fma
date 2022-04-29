@@ -5,8 +5,12 @@ import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
 import Bottom from "../Basic/Bottom"
 import SearchApartments from './SearchApartments';
+import PersonalInfo from './PersonalInfo';
+import History from './History';
 import "./Style.css";
-import BackgroundImage from '../img/BackgroungImage.jpg'
+import BackgroundImage from '../img/BackgroungImage.jpg';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Login from '../Sign/Login';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -26,16 +30,19 @@ class Dashboard extends Component {
 
       render() {
         return (
-            <div style={{margin: '0', padding: '0', position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
-                <Navbar/>
-                <div style={{ justifyContent: 'center'}}>
-                    <SearchApartments user={this.props.user.user} />
-                </div>
-                <div style={{marginTop: '170px'}}>
-                    <Bottom/>
-                </div>
-            </div>
-
+          <>
+            <BrowserRouter>
+                <Switch>
+                  <div style={{position: 'fixed',  width: '100%',height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
+                    <Navbar/>
+                    <Route path="/search" exact component={SearchApartments}/>
+                    <Route path="/history" component={History}/>
+                    <Route path="/dashboard/PersonalInfo" component={PersonalInfo}/>
+                  </div>
+                </Switch>
+              <Bottom/>
+            </BrowserRouter>
+            </>
           );
       }
     

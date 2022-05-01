@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
+import "./Style.css";
 
 class NavigationBar extends Component{
     constructor(props) {
@@ -32,16 +33,24 @@ class NavigationBar extends Component{
                     <div className="brand-logo" style= {{marginLeft:'120px',fontSize:"35px", color: 'white', marginTop:'5px', position:'absolute', zIndex:2, textDecoration: 'none', fontWeight:'bold'}}>
                         FMA
                     </div>
-                      <Link to={"/search"} style={{textAlign: 'center', direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '350px'}}>
+                    <ul style={{marginLeft: '200px', marginTop: '15px', position: 'fixed'}}>
+                      <li className='nav-li'>
+                      <Link to={"/search"}>
                           SEARCH
                       </Link>
-                      <Link to={"/search"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '500px'}}>
+                      </li>
+                      <li className='nav-li'>
+                      <Link to={"/search"}>
                           CALCULATE
                       </Link>
-                      <Link to={"/history"} className="menu-bars" style={{direction:'rtl', color: 'white', position:'absolute', zIndex:3, fontSize:"25px", fontWeight:'bold', marginTop:'10px', marginLeft: '680px'}}>
+                      </li>
+                      <li className='nav-li'>
+                      <Link to={"/history"}>
                           HISTORY
                       </Link>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, direction: 'rtl', marginLeft: '680px', marginTop:'10px' }}>
+                      </li>
+                    </ul>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, direction: 'rtl', marginLeft: '780px', marginTop:'10px' }}>
                       היי {this.props.user.user.userName} !
                     </Typography>
                     <Sidebar/>

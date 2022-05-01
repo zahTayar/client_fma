@@ -70,11 +70,32 @@
 
 }
 
-.nav-text a:hover {
+.nav-text :hover {
     background-color: #e4e7eb;
-    width: 270px;
+    width: 370px;
     height: 100%;
 }
+
+.nav-li {
+    display: inline;
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: monospace;
+    font-weight: bolder;
+}
+
+.nav-li a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.nav-li a:hover {
+    background-color: blue;
+    width: 150px;
+    height: 100%;
+    color: whitesmoke;
+    padding-left: 10px;
+} 
 
 .nav-menu-items {
     width: 100%;

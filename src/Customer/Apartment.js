@@ -28,12 +28,12 @@ class Apartment extends Component {
           }
           return (
               <div style={{direction: 'rtl'}}>
-                  <Typography variant="h4" component="div">
+                  <Typography variant="h4" component="div" style={{direction: 'rtl'}}>
                     {this.props.data['neighbor'] ? this.props.data['neighbor']+ ", " : ''}
                     {this.props.data['street'] ? this.props.data['street']+ ", " : ''}
                     { this.props.data['city'] }
                   </Typography>
-                  <Typography variant="h6" component="div">
+                  <Typography variant="h6" component="div" style={{direction: 'rtl'}}>
                     {this.props.data['floor'] ? this.props.data['floor']+ ", " : ''}
                     {this.props.data['num_of_rooms'] ? "מספר חדרים " + this.props.data['num_of_rooms']+ ", " : ''}
                     {this.props.data['square_meter'] ? this.props.data['square_meter']+ " "+"מטר מרובע" + ", " : ''}

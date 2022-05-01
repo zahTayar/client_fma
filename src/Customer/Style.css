@@ -72,7 +72,6 @@
 
 .nav-text :hover {
     background-color: #e4e7eb;
-    width: 370px;
     height: 100%;
 }
 
@@ -89,12 +88,11 @@
     color: whitesmoke;
 }
 
-.nav-li a:hover {
+.nav-li li:hover {
     background-color: blue;
-    width: 150px;
     height: 100%;
     color: whitesmoke;
-    padding-left: 10px;
+    width: 270px;
 } 
 
 .nav-menu-items {

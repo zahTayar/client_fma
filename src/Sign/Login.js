@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
-// import connect from "react-redux/lib/connect/connect";
 import NavigationBar from "../Basic/navigationBar";
 import LoginForm from "./LoginForm";
 import Bottom from "../Basic/Bottom";
-import Background from "../img/Background.jpeg";
+import BackgroundImage from '../img/BackgroungImage.jpg';
 
 class Login extends Component {
   constructor(props) {
@@ -94,16 +93,9 @@ class Login extends Component {
         });
     };
     return (
-      <div>
-        <NavigationBar />
-        <div
-          style={{
-            backgroundImage: `url(${Background})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            marginTop: "-10px",
-          }}>
+      <div style={{position: 'fixed',  width: '100%', height: '100%', alignContent: 'center',display: 'flex'}}>
+        <div style={{position: 'fixed',backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0}}>
+          <NavigationBar />
           <div
             style={{
               width: "400px",
@@ -117,7 +109,6 @@ class Login extends Component {
               onButtonClick={handleButtonClick}
               error={this.state.error}></LoginForm>
           </div>
-          <Bottom />
         </div>
       </div>
     );

@@ -3,8 +3,7 @@ import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
 import NavigationBar from "../Basic/navigationBar"
 import RegisterForm from "./RegisterForm"
-import Bottom from "../Basic/Bottom"
-import Background from '../img/Background.jpeg'
+import BackgroundImage from '../img/BackgroungImage.jpg';
 
 class Register extends Component{
   constructor(props) {
@@ -71,18 +70,14 @@ class Register extends Component{
         );
       };
         return(
-          <div> 
+          <div style={{position: 'fixed',  width: '100%', height: '100%'}}>
+        <div style={{position: 'fixed',backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0}}>
             <NavigationBar/>
-            <div style={{backgroundImage: `url(${Background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', marginTop:'-10px'}}>
-
-            <div style={{width:'400px', height:'500px', borderColor:'rgba(106, 196, 255)'}}>
             <br></br>
             <br></br>
             <br></br>
             <RegisterForm onButtonClick={handleButtonClick} error = {this.state.error}></RegisterForm>
             </div>
-      <Bottom/>
-      </div>
        </div>
         )
     }

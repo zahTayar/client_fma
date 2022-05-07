@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import Sidebar from "./SideBarCustomer"
 import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
-import logo from "../img/logo.jpg"
-import "./Style.css";
+import logo from "../img/logo.jpg";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Container, Nav } from 'react-bootstrap';
 import "./Style.css";
 
 class NavigationBar extends Component{

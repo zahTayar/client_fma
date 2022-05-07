@@ -1,16 +1,26 @@
-
 import React , {Component} from 'react'
-import { Link } from "react-router-dom";
+import logo from "../img/logo.jpg";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Style.css";
+
 class NavigationBar extends Component{
     render(){
         return(
-           
-        <div style = {{height: '60px', display:'flex', borderColor:'black', position: 'fixed', top:'0px', right:'0px', width: '1460px', backgroundColor:'white', zIndex:2}}>
-            <Link to={"/"} className="brand-logo" style= {{marginLeft:'300px',fontSize:"45px", color: 'rgba(106, 196, 255)', marginTop:'1px', position:'absolute', zIndex:'99', textDecoration: 'none'}}>
-                FMA
-            </Link>
-        </div>
+            <div>
+            <Box sx={{ flexGrow: 1 }}>
+              <AppBar position="static">
+                <Toolbar>
+                  <img src={logo} alt="logo" style={{width:'70px', float: 'left'}}></img>
+                  <div className="brand-logo" style= {{marginLeft:'120px',fontSize:"35px", color: 'white', marginTop:'5px', position:'absolute', zIndex:2, textDecoration: 'none', fontWeight:'bold'}}>
+                      FMA
+                  </div>
+                </Toolbar>
+              </AppBar>
+            </Box>
+          </div>
         );
     }
 }

@@ -23,7 +23,7 @@ export default function SideBar() {
   return (
     <div>
 
-    <div style={{zIndex:-1}}>
+    <div style={{zIndex:100}}>
       <IconContext.Provider value={{ color: 'rgba(106, 196, 255)'}}>
         <div >
           <Link to='#' className='menu-bars' >

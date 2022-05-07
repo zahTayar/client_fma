@@ -17,7 +17,7 @@ class PersonalInfo extends Component{
     }
     render(){
         return(
-          <div style={{position: 'fixed', height: '100%', backgroundImage: `url(${BackgroundImage})`}}>
+          <div>
           <div style={{backgroundColor:'aliceblue', borderRadius:'30px', width:'400px', height:'330px',textAlign: "center", marginTop: "70px" ,marginLeft:'500px'}}>
             <h2 style={{color: 'black', marginTop:'100px', fontWeight:'bolder'}}>הפרטים שלי</h2>
             <br></br><br></br>

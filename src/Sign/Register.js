@@ -70,15 +70,12 @@ class Register extends Component{
         );
       };
         return(
-          <div style={{position: 'fixed',  width: '100%', height: '100%'}}>
-        <div style={{position: 'fixed',backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0}}>
+          <div style={{position: 'fixed',  width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0}}>
+          <div style={{position: 'fixed',backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0, overflowY: 'auto'}}>
             <NavigationBar/>
-            <br></br>
-            <br></br>
-            <br></br>
             <RegisterForm onButtonClick={handleButtonClick} error = {this.state.error}></RegisterForm>
             </div>
-       </div>
+         </div>
         )
     }
 }

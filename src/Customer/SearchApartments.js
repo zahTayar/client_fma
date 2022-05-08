@@ -254,8 +254,6 @@ class SearchApartments extends Component {
                                     onChange={this.handleChangeStreet}
                                 />
                             </FormControl>
-                            </div>
-                            <div>
                             <Button type='submit' style={{   width: "150px", height: '50px', marginBottom: '10px' }} variant="contained" size = 'large'>
                                 SEARCH
                             </Button>

@@ -33,7 +33,7 @@ class Dashboard extends Component {
           <>
             <BrowserRouter>
                 <Switch>
-                  <div style={{position: 'fixed',  width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0}}>
+                  <div style={{position: 'fixed',  width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0, overflowY: 'auto'}}>
                     <Navbar/>
                     <Route path="/search" exact component={SearchApartments}/>
                     <Route path="/history" component={History}/>

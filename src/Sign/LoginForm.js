@@ -38,7 +38,7 @@ export default function SignInForm({ onButtonClick, error }) {
       className={classes.root}
       noValidate
       autoComplete="off"
-      style={{ textAlign: "center" ,marginLeft:'450px',marginBottom:'300px' , backgroundColor:'aliceblue', borderRadius:'30px', width:'400px', height:'330px' }}
+      style={{alignContent:'center', backgroundColor: 'aliceblue', width: '100%', maxWidth: '400px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}
     >
             <div className="regular" style={{color:'rgba(106, 196, 255)', fontWeight:'bolder',fontSize:'30px', direction:'rtl', marginTop: "70px"}}>התחברות</div>
 

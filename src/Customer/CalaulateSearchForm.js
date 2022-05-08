@@ -10,6 +10,7 @@ import { saveItem } from "../Action/SaveItem";
 import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
 import Button from '@mui/material/Button';
+import CalculateResults from './CalculateResults'
 
 class CalculateSearchForm extends Component {
     constructor(props) {
@@ -88,6 +89,7 @@ class CalculateSearchForm extends Component {
         });
         axios.post("operations", operation, {headers:{"Content-Type" : "application/json"}})
         .then((response) => {
+            console.log(response.data)
             this.setState({calculate_result_from_server: response.data}) 
             if (Object.keys(response.data).length == 0) {
                 this.setState({error_search: true})
@@ -133,12 +135,12 @@ class CalculateSearchForm extends Component {
             <Alert severity="error">{this.state.error}.</Alert>
             );
         }
-        let search_results = <CircularProgress />;
+        let calculate_data_view = <CircularProgress />;
         if (this.state.calculate_result_from_server && (Object.keys(this.state.calculate_result_from_server).length > 0)) {
-            search_results = <SearchResults data={this.state.apartments} apartments_data={this.state.apartments_data}></SearchResults>
+            calculate_data_view = <CalculateResults data={this.state.calculate_result_from_server}></CalculateResults>
         }
         else if(this.state.error_search){
-            search_results = <Alert severity="info">{this.state.msg_error_search}.</Alert>
+            calculate_data_view = <Alert severity="info">{this.state.msg_error_search}.</Alert>
         }
         return (
             <div style={{alignContent:'center', backgroundColor: 'lightcyan', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}>
@@ -148,7 +150,7 @@ class CalculateSearchForm extends Component {
                         aria-labelledby="parent-modal-title"
                         aria-describedby="parent-modal-description">
                         <Box sx={{ ...modal_style, width: 800, maxHeight: 700, overflowY: 'auto' }}>
-                        {search_results}
+                        {calculate_data_view}
                         </Box>
                 </Modal>
                 <form onSubmit={this.handleSubmitForm}>
@@ -164,13 +166,13 @@ class CalculateSearchForm extends Component {
                         required
                         label="Square Meter"
                         type= "number"
-                        onChange={()=>this.handleChangeSquareMeter()}
+                        onChange={this.handleChangeSquareMeter}
                     />
                     <TextField
                         required
                         label="Number Of Rooms"
                         type= "number"
-                        onChange={()=>this.handleChangeNumOfRooms()}
+                        onChange={this.handleChangeNumOfRooms}
                     />
                     </div>
                     <div>
@@ -178,13 +180,13 @@ class CalculateSearchForm extends Component {
                         required
                         label="City"
                         type= "text"
-                        onChange={()=>this.handleChangeCity()}
+                        onChange={this.handleChangeCity}
                     />
                     <TextField
                         required
                         label="Street"
                         type= "text"
-                        onChange={()=>this.handleChangeStreet()}
+                        onChange={this.handleChangeStreet}
                     />
                     </div>
                     <div>

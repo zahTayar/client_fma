@@ -36,7 +36,7 @@ class NavigationBar extends Component{
                       </Link>
                       </li>
                       <li className='nav-li'>
-                      <Link to={"/search"}>
+                      <Link to={"/calculate"}>
                           CALCULATE
                       </Link>
                       </li>

@@ -196,8 +196,7 @@ class SearchApartments extends Component {
         }
         return (
             <div>
-                <div style={{ display: "flex", alignItems: "center", padding: "100px", margin: 'auto', borderRadius: '50%', position:'fixed'}}>
-                    <Stack>
+                <div style={{alignContent:'center', backgroundColor: 'lightcyan', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}>
                     <Modal
                         open={this.state.show_modal}
                         onClose={this.handleCloseModal}
@@ -207,66 +206,62 @@ class SearchApartments extends Component {
                         {search_results}
                         </Box>
                     </Modal>
-                    <form style={{marginLeft: "100px", borderRadius: '50%'}} onSubmit={this.handleSubmitForm}>
                         {error}
-                        <table style={{ justifyContent: "center", width: "800px", height: "150px", backgroundColor: 'white'}}>
-                        <tr>
-                        <th style={{ padding: "20px", width: "150px"}}>
-                        <FormControl required fullWidth sx={{ m: 1 }} variant="filled" style={{backgroundColor: 'white'}}>
-                            <InputLabel htmlFor="filled-adornment-amount">Price</InputLabel>
-                            <FilledInput
-                                id="filled-adornment-amount"
-                                onChange={this.handleChangePrice}
-                                startAdornment={<InputAdornment position="start">₪</InputAdornment>}
-                            />
-                        </FormControl>
-                        </th>
-                        <th style={{ padding: "20px", width: "150px" }}>
-                        <FormControl required fullWidth sx={{ m: 1 }} variant="filled" style={{backgroundColor: 'white'}}>
-                            <InputLabel htmlFor="filled-adornment-amount">Number Of Rooms</InputLabel>
-                            <FilledInput
-                                id="filled-adornment-amount"
-                                onChange={this.handleChangeNumOfRooms}
-                            />
-                        </FormControl>
-                        </th> 
-                        <th style={{ padding: "20px", width: "150px" }}>
-                        <FormControl required fullWidth sx={{ m: 1 }} variant="filled" style={{backgroundColor: 'white'}}>
-                            <InputLabel htmlFor="filled-adornment-amount">Square Meter</InputLabel>
-                            <FilledInput
-                                id="filled-adornment-amount"
-                                onChange={this.handleChangeSquareMeter}
-                            />
-                        </FormControl>
-                        </th>
-                        </tr>
-                        <tr>    
-                        <th style={{ padding: "20px", width: "150px" }}>
-                        <FormControl required fullWidth sx={{ m: 1 }} variant="filled" style={{backgroundColor: 'white'}}>
-                            <InputLabel htmlFor="filled-adornment-amount">City</InputLabel>
-                            <FilledInput
-                                id="filled-adornment-amount"
-                                onChange={this.handleChangeCity}
-                            />
-                        </FormControl>
-                        </th>
-                        <th style={{ padding: "20px", width: "150px" }}>
-                        <FormControl fullWidth sx={{ m: 1 }} variant="filled" style={{backgroundColor: 'white'}}>
-                            <InputLabel htmlFor="filled-adornment-amount">Street</InputLabel>
-                            <FilledInput
-                                id="filled-adornment-amount"
-                                onChange={this.handleChangeStreet}
-                            />
-                        </FormControl>
-                        </th>
-                        <th style={{  padding: "10px", width: "150px" }}>
-                            <Button type='submit' style={{  width: "150px", height: '50px' }} variant="contained" size = 'large'>
-                                SEARCH</Button>
-                        </th>
-                        </tr>                       
-                        </table>
-                    </form>
-                    </Stack>
+                        <form onSubmit={this.handleSubmitForm}>
+                        <Box
+                            sx={{
+                                '& .MuiTextField-root': { m: 3, width: '25ch' }
+                            }}
+                            noValidate
+                            autoComplete="on"
+                        >
+                            <div>
+                            <FormControl required sx={{ m: 2 }} variant="filled">
+                                <InputLabel>Price</InputLabel>
+                                <FilledInput
+                                        id="filled-adornment-amount"
+                                        onChange={this.handleChangePrice}
+                                        startAdornment={<InputAdornment position="start">₪</InputAdornment>}
+                                />
+                            </FormControl>
+                            <FormControl required sx={{ m: 2 }} variant="filled" >
+                                <InputLabel htmlFor="filled-adornment-amount">Number Of Rooms</InputLabel>
+                                <FilledInput
+                                    id="filled-adornment-amount"
+                                    onChange={this.handleChangeNumOfRooms}
+                                />
+                            </FormControl>
+                            <FormControl required sx={{ m: 2 }} variant="filled">
+                                <InputLabel htmlFor="filled-adornment-amount">Square Meter</InputLabel>
+                                <FilledInput
+                                    id="filled-adornment-amount"
+                                    onChange={this.handleChangeSquareMeter}
+                                />
+                            </FormControl>
+                            </div>
+                            <div>
+                            <FormControl required sx={{ m: 2 }} variant="filled">
+                                <InputLabel htmlFor="filled-adornment-amount">City</InputLabel>
+                                <FilledInput
+                                    id="filled-adornment-amount"
+                                    onChange={this.handleChangeCity}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 2 }} variant="filled" >
+                                <InputLabel htmlFor="filled-adornment-amount">Street</InputLabel>
+                                <FilledInput
+                                    id="filled-adornment-amount"
+                                    onChange={this.handleChangeStreet}
+                                />
+                            </FormControl>
+                            </div>
+                            <div>
+                            <Button type='submit' style={{   width: "150px", height: '50px', marginBottom: '10px' }} variant="contained" size = 'large'>
+                                SEARCH
+                            </Button>
+                            </div>
+                        </Box>
+                        </form>
                 </div>
             </div>
         )

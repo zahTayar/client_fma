@@ -7,10 +7,10 @@ import Bottom from "../Basic/Bottom"
 import SearchApartments from './SearchApartments';
 import PersonalInfo from './PersonalInfo';
 import History from './History';
+import Calculate from './CalaulateSearchForm';
 import "./Style.css";
 import BackgroundImage from '../img/BackgroungImage.jpg';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Login from '../Sign/Login';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -38,6 +38,7 @@ class Dashboard extends Component {
                     <Route path="/search" exact component={SearchApartments}/>
                     <Route path="/history" component={History}/>
                     <Route path="/dashboard/PersonalInfo" component={PersonalInfo}/>
+                    <Route path="/calculate" component={Calculate}/>
                   </div>
                 </Switch>
               <Bottom/>

@@ -223,7 +223,7 @@ class History extends Component{
         }
 
         return(
-            <div style={{padding: "100px", borderRadius: '50%', display: "flex", position: 'fixed', alignItems: "center", marginLeft: '100px'}}>
+            <div style={{alignContent:'center', backgroundColor: 'lightcyan', width: '100%', maxWidth: '1000px', display: 'block', margin: '0 auto', marginTop: '30px',marginBottom: '10px', borderRadius: '30px'}}>
                 <Modal
                   open={this.state.open}
                   onClose={this.handleClose}
@@ -249,7 +249,7 @@ class History extends Component{
                         {search_results}
                         </Box>
                 </Modal>
-                <TableContainer component={Paper} style={{  width: 'auto', maxHeight: '500px'}}>
+                <TableContainer component={Paper} style={{  width: 'auto', maxHeight: '400px'}}>
                   <Table sx={{ minWidth: 650 }}>
                     <TableHead>
                       <TableRow>

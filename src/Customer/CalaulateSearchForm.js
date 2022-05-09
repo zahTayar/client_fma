@@ -69,7 +69,7 @@ class CalculateSearchForm extends Component {
     }
 
     handleCloseModal = () => {
-        this.setState({ show_modal: false, apartments: null, error_search: false });
+        this.setState({ show_modal: false, calculate_result_from_server: null, error_search: false });
     }
 
     postOperation = () => {
@@ -137,13 +137,13 @@ class CalculateSearchForm extends Component {
         }
         let calculate_data_view = <CircularProgress />;
         if (this.state.calculate_result_from_server && (Object.keys(this.state.calculate_result_from_server).length > 0)) {
-            calculate_data_view = <CalculateResults data={this.state.calculate_result_from_server}></CalculateResults>
+            calculate_data_view = <CalculateResults data={this.state.calculate_result_from_server} square_meter={this.state.square_meter}></CalculateResults>
         }
         else if(this.state.error_search){
             calculate_data_view = <Alert severity="info">{this.state.msg_error_search}.</Alert>
         }
         return (
-            <div style={{alignContent:'center', backgroundColor: 'lightcyan', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}>
+            <div style={{alignContent:'center', backgroundColor: 'aliceblue', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}>
                  <Modal
                         open={this.state.show_modal}
                         onClose={this.handleCloseModal}

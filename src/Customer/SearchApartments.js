@@ -196,7 +196,7 @@ class SearchApartments extends Component {
         }
         return (
             <div>
-                <div style={{alignContent:'center', backgroundColor: 'lightcyan', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}>
+                <div style={{alignContent:'center', backgroundColor: 'aliceblue', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}>
                     <Modal
                         open={this.state.show_modal}
                         onClose={this.handleCloseModal}

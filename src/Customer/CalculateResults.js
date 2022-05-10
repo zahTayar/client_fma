@@ -20,7 +20,7 @@ class CalculateResults extends Component {
           year = Number(year)
           if(year == 2018 || Number(this.props.data[String(year)]) == 0){ return (
             <Typography variant="body2">
-                אין נתונים
+                
             </Typography>
         );}
           let current_per_meter = Number(this.props.data[String(year)]) / Number(this.props.square_meter);

@@ -14,6 +14,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { saveItem } from "../Action/SaveItem";
 import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Fade from '@mui/material/Fade';
 
 class SearchApartments extends Component {
     constructor(props) {
@@ -29,7 +32,9 @@ class SearchApartments extends Component {
           apartments: null,
           apartments_data: null,
           error_search: false,
-          msg_error_search: 'Sorry, we do not find apartments for you yet....'
+          msg_error_search: 'Sorry, we do not find apartments for you yet....',
+          show_street: false,
+          streets_by_city: []
       };
       this.props.saveUser({
         user: this.props.user.user,
@@ -53,7 +58,8 @@ class SearchApartments extends Component {
       };
 
     handleChangeCity = (event) => {
-        this.setState({ city: event.target.value });
+        console.log(event)
+        this.setState({ city: event.target.value, show_street: true });
       };
 
     handleChangeStreet = (event) => {
@@ -127,6 +133,29 @@ class SearchApartments extends Component {
         })
         .catch((error) => {
             this.setState({error_search: true})
+            console.log(error.response.data)
+        });
+    }
+
+    get_streets_by_city = (city) => {
+        const operation = JSON.stringify({
+            _id: 'operation_id',
+            type: "streets_by_city_apartments",
+            invoked_by: this.props.user.user.email, //this.props.user.email
+            created_timestamp: '',
+            operation_attributes: {
+                city: city
+            }
+        });
+        axios.post("operations", operation, {headers:{"Content-Type" : "application/json"}})
+        .then((response) => {
+            
+            this.setState({streets_by_city: [... new Set(response.data['0'])].filter(element => {
+                return element !== null;
+              }).map((val=> ({label: val})))}) 
+            console.log(this.state.streets_by_city)   
+        })
+        .catch((error) => {
             console.log(error.response.data)
         });
     }
@@ -240,24 +269,38 @@ class SearchApartments extends Component {
                             </FormControl>
                             </div>
                             <div>
-                            <FormControl required sx={{ m: 2 }} variant="filled">
-                                <InputLabel htmlFor="filled-adornment-amount">City</InputLabel>
-                                <FilledInput
-                                    id="filled-adornment-amount"
-                                    onChange={this.handleChangeCity}
+                            
+                            <Autocomplete
+                                id="filled-adornment-amount"
+                                style={{float: 'left'}}
+                                getOptionLabel={ (option) => option.label }
+                                onChange={(event, newVal)=> {
+                                    if(newVal == null){ this.setState({ city: '', show_street: false, streets_by_city: ''}) }
+                                    else {
+                                        this.get_streets_by_city(newVal.label) 
+                                        this.setState({ city: newVal.label, show_street: true 
+                                        }) }
+                                }}
+                                options={[{label: 'קרית שמונה'}, {label: 'בית שאן'}]}
+                                renderInput={(params) => <TextField required {...params} label="City" />}
                                 />
-                            </FormControl>
-                            <FormControl sx={{ m: 2 }} variant="filled" >
-                                <InputLabel htmlFor="filled-adornment-amount">Street</InputLabel>
-                                <FilledInput
-                                    id="filled-adornment-amount"
-                                    onChange={this.handleChangeStreet}
+                            <Fade in={this.state.show_street && this.state.city != '' && (Object.keys(this.state.streets_by_city).length > 0)}>
+                            <Autocomplete
+                                id="filled-adornment-amount"
+                                clearOnEscape
+                                getOptionLabel={ (option) => option.label }
+                                options={this.state.streets_by_city}
+                                onChange={(event, newVal)=> {
+                                    if(newVal == null){ this.setState({ street: '' }) }
+                                    else { this.setState({ street: newVal.label}) }
+                                }}
+                                renderInput={(params) => <TextField {...params} label="Street" />}
                                 />
-                            </FormControl>
-                            <Button type='submit' style={{   width: "150px", height: '50px', marginBottom: '10px' }} variant="contained" size = 'large'>
+                            </Fade>
+                            </div>
+                            <Button type='submit' style={{ width: "150px", height: '50px', marginBottom: '10px' }} variant="contained" size = 'large'>
                                 SEARCH
                             </Button>
-                            </div>
                         </Box>
                         </form>
                 </div>

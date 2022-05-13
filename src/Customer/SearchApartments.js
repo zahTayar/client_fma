@@ -269,7 +269,6 @@ class SearchApartments extends Component {
                             </FormControl>
                             </div>
                             <div>
-                            
                             <Autocomplete
                                 id="filled-adornment-amount"
                                 style={{float: 'left'}}

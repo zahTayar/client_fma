@@ -18,7 +18,7 @@ class CalculateResults extends Component {
 
       calculate_increase_value = (year) => {
           year = Number(year)
-          if(year == 2018 || Number(this.props.data[String(year)]) == 0){ return (
+          if(year == 2018 || Number(this.props.data[String(year)]) == 0 || Number(this.props.data[String(year - 1)]) == 0){ return (
             <Typography variant="body2">
                 
             </Typography>

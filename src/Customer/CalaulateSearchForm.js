@@ -10,7 +10,9 @@ import { saveItem } from "../Action/SaveItem";
 import { saveUser } from "../Action/SaveUser";
 import { connect } from "react-redux";
 import Button from '@mui/material/Button';
-import CalculateResults from './CalculateResults'
+import CalculateResults from './CalculateResults';
+import Autocomplete from '@mui/material/Autocomplete';
+import Fade from '@mui/material/Fade';
 
 class CalculateSearchForm extends Component {
     constructor(props) {
@@ -24,7 +26,8 @@ class CalculateSearchForm extends Component {
           error: '',
           calculate_result_from_server: null,
           error_search: false,
-          msg_error_search: 'Sorry, we do not have data to your search yet....'
+          msg_error_search: 'Sorry, we do not have data to your search yet....',
+          streets_by_city: []
       };
       this.props.saveUser({
         user: this.props.user.user,
@@ -101,6 +104,37 @@ class CalculateSearchForm extends Component {
         });
     }
 
+    get_streets_by_city_data = (city) => {
+        const operation = JSON.stringify({
+            _id: 'operation_id',
+            type: "streets_by_city_apartments_data",
+            invoked_by: this.props.user.user.email, //this.props.user.email
+            created_timestamp: '',
+            operation_attributes: {
+                city: city
+            }
+        });
+        axios.post("operations", operation, {headers:{"Content-Type" : "application/json"}})
+        .then((response) => {
+            let tmp_streets = [ ... new Set(response.data['0'].filter(element => {
+                return element !== null;
+              }).map((val => (val.split(/[\d\.]+/)[0].trim()))))].map((val=> ({label: val})))
+              console.log(tmp_streets)
+            this.setState({streets_by_city: tmp_streets }) 
+               
+        })
+        .catch((error) => {
+            console.log(error.response.data)
+        });
+    }
+
+    uniq = (arr) => {
+        arr.filter((val, id) => {
+            return arr.indexOf(val) == id;  
+        });
+        return arr;
+    }
+
     checkDigits = (field) => {
         return /^[0-9]+$/.test(field);
     }
@@ -175,19 +209,32 @@ class CalculateSearchForm extends Component {
                         onChange={this.handleChangeNumOfRooms}
                     />
                     </div>
-                    <div>
-                    <TextField
-                        required
-                        label="City"
-                        type= "text"
-                        onChange={this.handleChangeCity}
+                    <div style={{display: 'inline-block'}}>
+                    <Autocomplete
+                                id="filled-adornment-amount"
+                                getOptionLabel={ (option) => option.label }
+                                onChange={(event, newVal)=> {
+                                    if(newVal == null){ this.setState({ city: '', streets_by_city: ''}) }
+                                    else {
+                                        this.get_streets_by_city_data(newVal.label) 
+                                        this.setState({ city: newVal.label }) }
+                                }}
+                                options={[{label: 'קרית שמונה'}, {label: 'בית שאן'}]}
+                                renderInput={(params) => <TextField required {...params} label="City" />}
                     />
-                    <TextField
-                        required
-                        label="Street"
-                        type= "text"
-                        onChange={this.handleChangeStreet}
-                    />
+                    <Fade in={this.state.city != '' && (Object.keys(this.state.streets_by_city).length > 0)}>
+                            <Autocomplete
+                                id="filled-adornment-amount"
+                                clearOnEscape
+                                getOptionLabel={ (option) => option.label }
+                                options={this.state.streets_by_city}
+                                onChange={(event, newVal)=> {
+                                    if(newVal == null){ this.setState({ street: '' }) }
+                                    else { this.setState({ street: newVal.label}) }
+                                }}
+                                renderInput={(params) => <TextField {...params} label="Street" />}
+                                />
+                    </Fade>
                     </div>
                     <div>
                         <Button type='submit' style={{  width: "150px", height: '50px', marginBottom: '10px' }} variant="contained" size = 'large'>

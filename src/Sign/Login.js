@@ -117,4 +117,3 @@ function mapDispatchToProps(dispatch) {
 
 const SignIn = connect(mapStateToProps, mapDispatchToProps)(Login);
 export default connect()(SignIn);
-// export default Login;

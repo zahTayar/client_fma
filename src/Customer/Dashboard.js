@@ -29,9 +29,11 @@ class Dashboard extends Component {
       }
 
       render() {
-        return (
-          <>
-            <BrowserRouter>
+        if(!this.props.user.isLoggedIn){
+          window.location.assign("/")
+        }
+        let dash_route = 
+        <BrowserRouter>
                 <Switch>
                   <div style={{position: 'fixed',  width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0, overflowY: 'auto'}}>
                     <Navbar/>
@@ -43,7 +45,10 @@ class Dashboard extends Component {
                 </Switch>
               <Bottom/>
             </BrowserRouter>
-            </>
+        return (
+          <>
+           {this.props.user.isLoggedIn ? dash_route : ''} 
+          </>
           );
       }
     
@@ -54,7 +59,7 @@ const mapStateToProps = (state) => {
       user: state.user
     };
   };
-  function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
       saveItem: (item) => dispatch(saveItem(item)),
       saveUser: (user) => dispatch(saveUser(user)),

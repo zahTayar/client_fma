@@ -6,11 +6,11 @@ import LoginForm from "./LoginForm";
 import Bottom from "../Basic/Bottom";
 import BackgroundImage from '../img/BackgroungImage.jpg';
 
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoginSucces: false,
       isLoggedIn: false,
       succeded: false,
       submitted: false,
@@ -44,6 +44,7 @@ class Login extends Component {
         "http://localhost:5500/fma/users/login/" + Email
       )
         .then((response) => {
+          console.log(response.status)
           if (response.status === 200) {
             this.setState({ succeded: true });
             response.json().then((d) => {
@@ -79,12 +80,11 @@ class Login extends Component {
                 error: "על מנת להתחבר למערכת עליך להזין נתונים מתאימים",
               });
             } else {
-              response.json().then((x) => {
-                this.setState({
-                  isLoginSucces: false,
-                  error: "אחד או יותר מהנתונים שהוזנות אינם נכונים",
-                });
+              this.setState({
+                isLoggedIn: false,
+                error:  "אחד או יותר מהנתונים שהוזנו אינם נכונים",
               });
+             
             }
           }
         })
@@ -92,6 +92,7 @@ class Login extends Component {
           console.error("Error:", error.data);
         });
     };
+
     return (
       <div style={{position: 'fixed',  width: '100%', height: '100%', backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0}}>
         <div style={{position: 'fixed',backgroundImage: `url(${BackgroundImage})`, right: 0, left: 0, top: 0, bottom: 0, overflowY: 'auto'}}>

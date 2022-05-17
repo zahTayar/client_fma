@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
+import Alert from '@mui/material/Alert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +41,9 @@ export default function SignInForm({ onButtonClick, error }) {
       autoComplete="off"
       style={{alignContent:'center', backgroundColor: 'aliceblue', width: '100%', maxWidth: '400px', display: 'block', margin: '0 auto', marginTop: '100px', borderRadius: '30px'}}
     >
+      
             <div className="regular" style={{color:'rgba(106, 196, 255)', fontWeight:'bolder',fontSize:'30px', direction:'rtl', marginTop: "70px"}}>התחברות</div>
-
+            {error!="" ?  <Alert severity="error" style={{textAlign: 'center',direction:'rtl'}}>{error}</Alert> : ''}
       <div>
         <div>
           <TextField
@@ -71,7 +73,6 @@ export default function SignInForm({ onButtonClick, error }) {
           </div>
         <Button className="regular"  style={{position:'relative',zIndex:2,display:'inline',borderColor:'white', backgroundColor:'rgba(106, 196, 255)', color:'white', fontSize: '17px', borderRadius:'30px', width:'100px', height:'45px', fontWeight:'bolder' ,marginTop:'10px'}} onClick={handleButtonClick}>התחברות
         <div className="regular" style={{color:'red', fontSize:'10px', marginTop:'20px', width:'115px', marginRight:'30px'}}>
-          {error}
         </div>
         </Button>
 

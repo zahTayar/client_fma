@@ -47,6 +47,7 @@ class Apartment extends Component {
                   <Box sx={{
                         width: '100%',
                         height: 80,
+                        maxHeight: '500px',
                         textAlign: 'right',
                         backgroundColor: 'whitesmoke',
                         '&:hover': {

@@ -44,7 +44,8 @@ class SearchResults extends Component {
             boxShadow: 24,
             pt: 2,
             px: 4,
-            pb: 3,
+            pb: 3, 
+            overflowY: 'auto'
           };
         let apartments = []
         for(let i in Object.values(this.props.data)) {
@@ -88,12 +89,12 @@ class SearchResults extends Component {
                     onClose={this.handleCloseModal}
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description">
-                    <Box sx={{ ...modal_style, width: 800, maxHeight: 700, overflowY: 'auto' }}>
+                    <Box sx={{ ...modal_style, width: 900, maxHeight: '600px', overflowY: 'auto' }}>
                     <Button onClick = {this.handleCloseModal}>X</Button>
                     {apartment_view}
                     </Box>
                 </Modal>
-                <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper', overflowY: 'auto' }}>
+                <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper', maxHeight: '500px' }}>
                 <h3 id="parent-modal-title">Last Deals</h3>
                 {apartments_data && apartments_data.map(tmp_apartment_data => 
                      <><ListItem alignItems="flex-start" style={{backgroundColor: "whitesmoke"}}>
